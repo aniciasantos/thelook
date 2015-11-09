@@ -67,3 +67,12 @@
     type: number
     sql: ${count} - ${sold_count}
     
+  - measure: sold_percent
+    type: number
+    value_format: '0.00\%'
+    sql: 100.0* ${sold_count}/${count}
+    
+  - measure: total_cost
+    type: sum
+    sql: ${cost}
+    value_format: '$#,##0.00'
