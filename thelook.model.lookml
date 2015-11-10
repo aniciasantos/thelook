@@ -17,8 +17,8 @@
   joins:
     - join: inventory_items
       type: left_outer
-      sql_on: ${order_items.inventory_item_id} = ${inventory_items.id}
-      relationship: many_to_one
+      sql_on: ${inventory_items.id} = ${order_items.inventory_item_id} 
+      relationship: one_to_many
 
     - join: orders
       type: left_outer
@@ -34,6 +34,11 @@
       type: left_outer
       sql_on: ${users.id} = ${user_data.user_id}
       relationship: one_to_many
+    
+    - join: products
+      type: left_outer
+      sql_on: ${inventory_items.product_id} = ${products.id}
+      relationship: many_to_one
       
 - explore: orders
   joins:
@@ -46,7 +51,7 @@
   joins:
     - join: inventory_items
       type: left_outer
-      sql_on: ${products.id} = ${inventory_items.product_id}
+      sql_on: ${inventory_items.product_id} = ${products.id}
       relationship: one_to_many
       
 # - explore: schema_migrations
